@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> angular inheritance</title>
+</head>
+<body ng-app="parcticeApp">
+
+<div ng-controller="OuterController">
+ {{outer}}
+  <div ng-controller="InnerController">
+   {{inner}}
+   <input ng-model="outer"/>
+   {{$parent.outer}}
+  </div>
+</div>
+
+<div ng-controller="EditController">
+  <span> {{message.content}}</span>
+  <div ng-if="userIsAdmin">
+    <span>  Edit Message</span>
+    <input ng-model="message.content"/>
+  </div>
+</div>
+
+<div ng-controller="Controller1">
+{{value1}}
+</div>
+
+<div ng-controller="Controller2">
+
+{{BigValue}}
+<input ng-model="BigValue">
+
+    <div ng-controller="Controller3">
+    {{value3}}
+    </div>
+    <div ng-controller="Controller4">
+    {{BigValue}} im 4
+        <div ng-controller="Controller5">
+        this is controller 5 {{BigValue}}
+        <input ng-model="$parent.BigValue">
+        </div>
+    </div>
+    <div ng-controller="Controller6">
+    {{value6}}
+    </div>
+<!-- </div> -->
+
+
+<div ng-controller="MainCtrl as main">
+  {{ main.title }} <hr>
+
+
+  <div ng-controller="AnotherCtrl as another">
+    Scope title: {{ another.title }}  <br>
+    Parent title: {{ main.title }} <br>
+
+   <hr>
+    <div ng-controller="YetAnotherCtrl as yet">
+      Scope title: {{ yet.title }}  <br>
+      Parent title: {{ another.title }}  <br>
+      Parent parent title: {{ main.title }}  <br>
+    </div>
+  </div>
+</div>
+
+
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="OuterController.js"></script>
+</body>
+</html>
